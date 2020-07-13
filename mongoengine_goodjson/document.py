@@ -181,7 +181,7 @@ class Helper(object):
             ]):
                 ret.pop(name, None)
             elif isinstance(ret.get(name), list):
-                if isinstance(fld.field, db.EmbeddedDocumentField) and \
+                if hasattr(fld, "field") and isinstance(fld.field, db.EmbeddedDocumentField) and \
                         issubclass(fld.field.document_type, Helper):
                     ret[name] = [
                         self.__to_json_drop_excluded_data(
